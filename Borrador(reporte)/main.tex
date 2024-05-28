@@ -1,0 +1,65 @@
+\documentclass[11pt,DIV=9, letterpaper, oneside, openright]{scrartcl}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+
+\title{Edición, mantenimiento y evaluación de una aplicación web para mostrar el fenómeno del suicidio}
+\subtitle{Reporte de actividades Enero-2024}
+\author{José Adrián Rodríguez González }
+\date{Febrero 2024}
+
+\begin{document}
+
+\maketitle
+
+\section{Introducción}
+
+Bajo el marco de las siguientes actividades, se establece el siguiente reporte:
+\begin{itemize}
+    \item Revisión de los contenidos relacionados a la plataforma del suicidio
+    \item Revisión del código desarrollado, puesta en marcha de este, configuración del entorno.
+    \item Evaluación de los cambios necesarios en la plataforma.
+    \item Revisión de la literatura con respecto al periodismo de datos.
+\end{itemize}
+
+\section{Revisión de los contenidos relacionados a la plataforma del suicidio}
+
+Para la realización de esta actividad, primero fue la visualización superficial de la web, que llevo consigo al seguimiento de los contenidos subsecuentes a la página, motivos de las leyendas, el periodismo de datos, la visualización, el trasfondo, etcétera, a su vez que se compartió el código mediante un repositorio en GitHub.
+
+\section{ Revisión del código desarrollado y puesta en marcha}
+
+Ya que se compartió el código, para visualización y pruebas independientes,se descargó el código por un archivo comprimido, para realizar pruebas independientes a la rama principal. Después se debió de instalar mediante la paquetería npm el creador de proyectos de React ``vite.js'', y mediante los comandos npm run dev, se ejecutó de forma local y revisar los errores que contiene el sitio, a su vez, la oportunidad de realizar una inmersión en el código, entender sus partes, como lo es la sección de los datos, componentes y el apartado UI/UX.
+
+\section{Evaluación de los cambios necesarios en la plataforma.}
+
+\begin{itemize}
+    
+    \item Los principales problemas que se encontraron fueron de visualización del sitio a su vez como la posibilidad de refactorizar u optimizar la complejidad del código de JavaScript.
+    
+    \item En la parte del apartado visual, presenta problemas con el tema del diseño resposive, a su vez en al forma como están dispuestos los estilos css a la hora de trasladarte o scrollear dentro del sitio, ya que, al bajar los párrafos se superponen, y esto puede ser debido a la propiedad transform3D, ya que mientras se baja en el sitio, va cambiando el tipo de posición de absoluta a sticky y muchas veces, la propiedad absolute presenta conflictos con sticky debido a que absolute toma como referente a una propiedad relative, por lo que será absoluta a la propiedad padre y generará conflictos con propiedades hermanas o hijas.
+    
+    \item También la situación que se observa es sobre la implementación de padding:0; y marign:0; en la propiedad universal, ya que puede generar conflictos con propiedad internas con respecto al padding y al margin. Algo que se recomienda realizar es solo mantener la propiedad box-sizing:border-box, ya que por si sola es la que permite realizar los calculo de padding y margin a su vez que sí se puede colocar un margin:0; en el body.
+    
+    \item La otra característica llamativa es que se utiliza display:flexbox; que sí bien no está mal, la situación que acontece es en donde y como se aplica, ay que si bien, es recomendada para responsive, no se recomienda si se utiliza para la parte principal del sitio, debido a que flex solo re-acomoda en una dimensión, por eso son recomendados en side-bars, a su vez que en el código parece observarse que a esta propiedad se le quiere modificar la dirección x y y, por lo que solamente es re-acondicionar la sección de x, en su defecto, la mejor práctica que se puede hacer es usar grid, ya que dicho valor en la propiedad display si permite acondicionar dos dimensiones a su vez que grid tiene funciones para acomodarse a cierto tamaño dado al viewport.
+    \item La otra situación es la condición que presenta transform y es debido a que a usa propiedades absolutas como px, que si bien, bajo ciertos contextos no es algo incorrecto, para usarlo como de medida en height no es recomendado y se recomienda utilizar otro tipo de propiedades que son relativas como es en el caso de vh, ya que permite adaptarse el tamaño dado al viewport del dispositivo.
+    
+    \item  La situación del uso de positions es el mayor conflicto que también presenta el sitio ya que la posición absolute suele ocasionar problemas cuando se combina con sitcky, por lo que el uso de positions se deberá acondicionar. 
+    
+    \item A su vez que también el uso de \emph{margins} para centrar elementos HTML, que si bien, no es mala práctica, el problema con ese método es que no puedes posicionar elementos a lado de él y por ende ocasión también conflictos en el posicionamiento, por lo que mejor es que podría utilizarse grid para el centrado de elementos, aunque también se puede utilizar flexbox si el acomodo es de solo una dimensión.
+    
+    \item Lo principal que se puede también cambiar es el uso de propiedades relativas a position, que si bien, tampoco es mala práctica en general, pero utilizarlo para el uso de elementos que sean grandes de bloque y que afectan el tamaño del sitio, no es tan buena práctica debido a que suele limitar el acomodo de elementos, a su vez como generar conflictos en la visualización en distintos dispositivos, por lo que de nueva forma, se puede utilizar grid o en dado caso, llegar a usar media queries para hacer acomodos en caso de no ser ajustado por el grid   
+\end{itemize}
+
+\section{Revisión de la literatura con respecto al periodismo de datos.}
+
+El periodismo de datos es un rama del periodismo emergente, que gracias a las nuevas tecnologías ha permitido posicionarse como ``la nueva forma de hacer periodismo''. La cuestión que hace destacar al periodismo de datos con respecto al tradicional es la implementación de las TI para recabar información, ya que a diferencia del método tradicional, en el que se hacen investigaciones campo, en el periodismo de datos se utiliza la estadística para poder dar inferencias acerca de problemáticas. En esta nueva forma de realizar periodismo, se ocupa un equipo de programadores, diseñadores, estadista y el comunicador que permitirá junto con el diseñador, hacer que la información acabalada por los programadores y diseñadores sea más digerible para un público común \cite{mutsvairo2020data}.
+
+Esta forma tan reciente de realizar periodismo ha tenido un potencial auge en países occidentales en donde las tecnologías de la información predominan, sin embargo, últimamente en países no occidentales o en algunos países en vías de desarrollo, ha cobrado relevancia debido a lo que se ha hallado gracias a esta forma de investigación, como en África del norte durante la primavera árabe, en Latinoamerica a la hora de hallar pruebas contundentes de desfalcos de dinero o de tasas de delincuencia.
+
+A su vez, actualmente dada a que la constitución política mexicana emana que el gobierno debe de ser transparente con la información y hacerla pública, demasiadas bases de datos se han hecho publicas y ha permitido mantener informada a la población. En este caso, las bases de datos de la tasa de suicidios en Guanajuato es pública y permite realizar un análisis exhaustivo para inferir en situaciones que sean causantes del problema 
+
+\bibliographystyle{plain} 
+\bibliography{references}
+
+\end{document}
+%%

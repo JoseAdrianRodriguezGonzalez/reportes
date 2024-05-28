@@ -1,0 +1,72 @@
+\documentclass[11pt,DIV=9, letterpaper, oneside, openright]{scrartcl}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\title{Edición, mantenimiento y evaluación de una aplicación web para mostrar el fenómeno del suicidio}
+\subtitle{Reporte de actividades Marzo-2024}
+\author{José Adrián Rodríguez González }
+\date{Marzo 2024}
+
+\begin{document}
+
+\maketitle
+
+\section{Introducción}
+En el mes de marzo, acorde al plan de trabajo establecido se realizaron las siguientes actividades:
+
+\begin{itemize}
+    \item Evaluación de la plataforma y recolección de datos 
+    \item Escritura y preparación de un artículo de divulgación
+    \item Análisis de los datos con respecto al suicidio para diversos años 
+\end{itemize}
+
+Sin embargo, dado a los errores encontrados anteriormente en el mes de febrero, se tuvo que extender ese proceso de corrección de errores. Dado que la calidad de página no permite ser evaluada por el usuario. Esto implica complicaciones en la visualización de la página, que se deben de corregir. Los errores presentes en el sitio, como fue en el caso de la transición de la pantalla, se tuvieron que corregir en este mes, dejando a un lado la evaluación. 
+
+Los errores en los cuales nos enfocamos en este periodo fueron:
+
+\begin{itemize}
+    \item Solucionar el problema de la pantalla blanca.
+    \item Cambiar la imagen de la lupa del buscador de municipios.
+    \item Mejorar la visibilidad de las personas en el buscador para móviles.
+    \item Arreglar el formato del buscador.
+\end{itemize}
+
+\section{Solucionar el problema de la pantalla blanca}
+
+Cuando se realizaron las correcciones del mes de febrero, apareció un \emph{bug} en el que al deslizar por la pantalla para visualizar la cantidad de personas fallecidas por suicidios en un municipio. Aparecía una pantalla en blanco deslizante y que impedía ver por completo la ilustración. En el proceso de investigación y análisis del código, se encontró que en el archivo \emph{App.jsx}, durante el proceso de eliminación de errores, se le mantuvo una propiedad \emph{sticky} y \emph{offset} que se adelantaba a la visualización de las personas y al fondo blanco. Estos elementos permanecían congelados mientras el elemento de la pantalla se desplazaba. Así que se arreglaron estas propiedad manteniendo fijo en un lugar sucesivo al de los elementos previos, generando un efecto de degradado.
+
+\section{Cambiar la imagen de la lupa de buscador de municipios}
+
+La lupa tenía una estética no tan sería, disonante con el diseño de l página. Además de que era un emoji colocado dentro del texto, por lo que se buscó un icono con una apariencia más discreta, elegante y armónica con la plataforma. 
+
+Este icono se encontró en font-awesome\cite{Font-Awesome} y se coloco el svg en esa sección, sin embargo, ya al ser un elemento distinto de la barra de búsqueda se debió de modificar el como se mostraba, puesto que originalmente era negro, así que se ocultaba con la tonalidad utilizada en la barra de búsqueda.
+
+\section{Mejorar la visibilidad de las personas en el buscador para móviles}
+
+Cuando se utilizaba el buscador en el celular, tenía los siguientes inconvenientes:
+
+\begin{enumerate}
+    \item La lista de búsquedas tenía un estilo de fuente diferente al usado de forma normativa en la plataforma.
+    \item Presentaba una transparencia la lista de resultados
+    \item Las personas que aparecían en el municipio, se sobreponían entre sí
+\end{enumerate}
+
+A su vez que sus soluciones fueron las siguientes:
+\begin{enumerate}
+    \item Se emparentó el estilo que tiene el sitio con esa zona especifica de la barra de búsqueda.
+    \item Se cambio el valor de opacidad de tal forma, que quitara la transparencia.
+    \item Se cambiaron los tamaños de ancho y alto de las personas.
+\end{enumerate}  
+
+Finalmente, después de realizar estos cambios, se encontraron dos problemas a resolver:
+\begin{itemize}
+    \item Quitar enlaces sin utilizar del HTML.
+    \item Seguía aparaciendo la pantalla de busqueda después de haber seleccionado una ciudad
+\end{itemize}
+ Por lo que también se dará su debido análisis de solución.
+
+En la sección de recolección de datos, ya que el sitio web tiene una mejor visibilidad en diferentes plataformas, ya puede ser colocado a internet mediante Github Pages, concretando así, que las personas que deseen contestar la encuesta, puedan hacerlo con total libertad. 
+
+\bibliographystyle{plain} 
+\bibliography{references}
+\end{document}
